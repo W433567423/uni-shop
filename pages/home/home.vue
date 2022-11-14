@@ -67,7 +67,7 @@
       async getSwiperList() {
         const {
           data: res
-        } = await $http.get('/api/public/v1/home/swiperdata')
+        } = await uni.$http.get('/api/public/v1/home/swiperdata')
         if (res.meta.status !== 200) return uni.$showMsg()
         this.swiperList = res.message
       },
@@ -75,7 +75,7 @@
         // console.log('this.navList')
         const {
           data: res
-        } = await $http.get('/api/public/v1/home/catitems')
+        } = await uni.$http.get('/api/public/v1/home/catitems')
         if (res.meta.status !== 200) return uni.$showMsg()
         this.navList = res.message
         // uni.showToast({
@@ -86,7 +86,7 @@
       async getFloorList() {
         const {
           data: res
-        } = await $http.get('/api/public/v1/home/floordata')
+        } = await uni.$http.get('/api/public/v1/home/floordata')
         if (res.meta.status !== 200) return uni.$showMsg()
         res.message.forEach(floor => {
           floor.product_list.forEach(prod => {
