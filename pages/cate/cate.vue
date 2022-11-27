@@ -29,7 +29,9 @@
 </template>
 
 <script>
+  import badgeMix from '@/mixins/tabbar-badge.js'
   export default {
+    mixins: [badgeMix],
     data() {
       return {
         wh: 0,
@@ -48,7 +50,7 @@
       async getCateList() {
         const {
           data: res
-        } = await uni.$http.get('/api/public/v1/categories')
+        } = await this.$http.get('/api/public/v1/categories')
         if (res.meta.status !== 200) return uni.$showMsg()
         this.cateList = res.message
         this.cateLevel2 = res.message[0].children

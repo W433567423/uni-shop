@@ -20,7 +20,7 @@
     </view>
     <!-- 楼层区域 -->
     <view class="floor-list">
-      <view class="floor-item" v-for="(item , i) in floorList">
+      <view class="floor-item" v-for="(item , i) in floorList" :key="i">
         <image :src="item.floor_title.image_src" class="floor-title"></image>
 
         <view class="floor-img-box">
@@ -43,10 +43,10 @@
 </template>
 
 <script>
-  import {
-    $http
-  } from '@escook/request-miniprogram';
+  // 导入自己封装的 mixin 模块
+  import badgeMix from '@/mixins/tabbar-badge.js'
   export default {
+    mixins: [badgeMix],
     data() {
       return {
         //轮播图数据列表
@@ -65,28 +65,24 @@
     methods: {
       // 获取数据函数
       async getSwiperList() {
+        // console.log(this.$http)
         const {
           data: res
-        } = await uni.$http.get('/api/public/v1/home/swiperdata')
+        } = await this.$http.get('/api/public/v1/home/swiperdata')
         if (res.meta.status !== 200) return uni.$showMsg()
         this.swiperList = res.message
       },
       async getNavList() {
-        // console.log('this.navList')
         const {
           data: res
-        } = await uni.$http.get('/api/public/v1/home/catitems')
+        } = await this.$http.get('/api/public/v1/home/catitems')
         if (res.meta.status !== 200) return uni.$showMsg()
         this.navList = res.message
-        // uni.showToast({
-        //   title: '分类请求成功',
-        //   duration: 1500
-        // })
       },
       async getFloorList() {
         const {
           data: res
-        } = await uni.$http.get('/api/public/v1/home/floordata')
+        } = await this.$http.get('/api/public/v1/home/floordata')
         if (res.meta.status !== 200) return uni.$showMsg()
         res.message.forEach(floor => {
           floor.product_list.forEach(prod => {

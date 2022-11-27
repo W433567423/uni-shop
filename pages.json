@@ -32,25 +32,17 @@
     "root": "subpkg",
     "pages": [{
       "path": "goods_detail/goods_detail",
-      "style": {
-        "navigationBarTitleText": ""
-      }
+      "style": {}
     }, {
       "path": "search/search",
-      "style": {
-        "navigationBarTitleText": ""
-      }
-
+      "style": {}
     }, {
       "path": "goods_list/goods_list",
       "style": {
-        "navigationBarTitleText": "",
         "onReachBottomDistance": 150,
         "enablePullDownRefresh": true,
         "backgroundColor": "#F8F8F8"
-
       }
-
     }]
   }],
   "globalStyle": {

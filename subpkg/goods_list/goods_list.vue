@@ -33,7 +33,7 @@
         this.isLoading = true
         const {
           data: res
-        } = await uni.$http.get('/api/public/v1/goods/search', this.queryObj)
+        } = await this.$http.get('/api/public/v1/goods/search', this.queryObj)
         this.isLoading = false
         callback && callback()
         if (res.meta.status !== 200) return uni.showToast({
