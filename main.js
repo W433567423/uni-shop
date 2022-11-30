@@ -14,6 +14,10 @@ $http.beforeRequest = function(options) {
     title: '数据加载中...',
     duration: 1800
   })
+  if (options.url.includes('/my/'))
+    options.header = {
+      Authorization: store.state.m_user.token
+    }
 }
 // 请求完成之后做一些事情
 $http.afterRequest = function() {

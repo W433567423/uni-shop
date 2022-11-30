@@ -1,24 +1,28 @@
 <template>
-  <view class="cart-container" v-if="cart.length!==0">
-    <my-address></my-address>
-    <view class="cart-title">
-      <uni-icons type="shop" size="18"></uni-icons>
-      <text class="cart-title-text">购物车</text>
+  <view>
+    <view class="cart-container" v-if="cart.length!==0">
+      <my-address></my-address>
+      <view class="cart-title">
+        <uni-icons type="shop" size="18"></uni-icons>
+        <text class="cart-title-text">购物车</text>
+      </view>
+      <view class="mb">
+        <uni-swipe-action>
+          <block v-for="(item,index) in cart" :key="index">
+            <uni-swipe-action-item :right-options="options" @click="swipeActionClickHandler(item.goods_id)">
+              <my-goods :goods="item" :showRadio="true" :showNum="true" @radio-change="radioChangeHander"
+                @num-change="numberChangeHander"></my-goods>
+            </uni-swipe-action-item>
+          </block>
+        </uni-swipe-action>
+      </view>
+      <!-- 结算-->
+      <my-settle></my-settle>
     </view>
-    <uni-swipe-action>
-      <block v-for="(item,index) in cart" :key="index">
-        <uni-swipe-action-item :right-options="options" @click="swipeActionClickHandler(item.goods_id)">
-          <my-goods :goods="item" :showRadio="true" :showNum="true" @radio-change="radioChangeHander"
-            @num-change="numberChangeHander"></my-goods>
-        </uni-swipe-action-item>
-      </block>
-    </uni-swipe-action>
-    <!-- 结算-->
-    <my-settle></my-settle>
-  </view>
-  <view v-else class="empty-cart">
-    <image src="/static//cart_empty@2x.png" class="empty-img"></image>
-    <text class="tip-text">空空如也</text>
+    <view v-else class="empty-cart">
+      <image src="/static//cart_empty@2x.png" class="empty-img"></image>
+      <text class="tip-text">空空如也</text>
+    </view>
   </view>
 </template>
 
@@ -94,5 +98,9 @@
       margin-top: 12px;
 
     }
+  }
+
+  .mb {
+    padding-bottom: 50px;
   }
 </style>

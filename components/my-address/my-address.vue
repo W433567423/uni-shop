@@ -53,8 +53,8 @@
         const [err, succ] = await uni.chooseAddress().catch(err => err)
         if (err === null && succ.errMsg === 'chooseAddress:ok')
           this.updateAddress(succ)
-        if (err && err.errMsg === 'chooseAddress:fail auth deny' || err.errMsg ===
-          'chooseAddress:fail authorize no response ') {
+        if (err && (err.errMsg === 'chooseAddress:fail auth deny' || err.errMsg ===
+            'chooseAddress:fail authorize no response ')) {
           this.reAuth()
         }
       },
